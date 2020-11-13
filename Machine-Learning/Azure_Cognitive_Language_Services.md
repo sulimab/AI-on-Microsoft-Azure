@@ -67,3 +67,9 @@ Serwis występuje w siedmiu wariantach:
 	* 0.5-2.5 Mln transakcji	- €0.844 za każdy 1 tys. transakcji
 	* 2.5-10 Mln transakcji		- €0.422 za każdy 1 tys. transakcji
 	* 10+ Mln transakcji		- €0.211 za każdy 1 tys. transakcji
+ * S0-S4 - wariant abonamentowy poszczególne opcje przedstawiają się następująco:
+	* S0 - maksymalnie 25 tys. transakcji	- €63.003 miesięcznie (€2.530 za 1 tys. transakcji)
+	* S1 - maksymalnie 100 tys. transakcji	- €210.707 miesięcznie (€2.109 za 1 tys. transakcji)
+	* S2 - maksymalnie 500 tys. transakcji	- €843.090 miesięcznie (€1.687 za 1 tys. transakcji)
+	* S3 - maksymalnie 2.5 mln transakcji	- €2,108.116 miesięcznie (€0.844  za 1 tys. transakcji)
+	* S4 - maksymalnie 10 mln transakcji	- €4,216.492 miesięcznie (€0.422 za 1 tys. transakcji)
