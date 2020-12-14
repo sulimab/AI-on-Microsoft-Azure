@@ -1,0 +1,42 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "9zECeb",
+    "name": "nowa_praca_dyplomowa_brak_tematu_dialog",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "4fan1t"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "FVFsnA"
+          },
+          "activity": "${SendActivity_FVFsnA()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "SmSQK6"
+          },
+          "activity": "${SendActivity_SmSQK6()}"
+        }
+      ]
+    }
+  ],
+  "generator": "nowa_praca_dyplomowa_brak_tematu_dialog.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "nowa_praca_dyplomowa_brak_tematu_dialog"
+}

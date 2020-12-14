@@ -1,0 +1,263 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "WykladowcaBot",
+      "description": "Bot pozwalający na zautomatyzowanie pewnych aspektów komunikacji z wykładowcą",
+      "id": "a3IBo4"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item"
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else"
+              },
+              "condition": "string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "859266",
+                    "name": "Send a response"
+                  },
+                  "activity": "${SendActivity_Welcome()}"
+                }
+              ]
+            }
+          ],
+          "value": "dialog.foreach.value",
+          "index": "dialog.foreach.index"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "NNquc9"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_NNquc9()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.name"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "RvJ0pI"
+          },
+          "activityProcessed": true,
+          "dialog": "start_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "sJlgMM",
+        "name": "praca_dyplomowa"
+      },
+      "intent": "praca_dyplomowa",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "CDTwh3"
+          },
+          "activityProcessed": true,
+          "dialog": "praca_dyplomowa_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "cfFrZt",
+        "name": "konsultacje"
+      },
+      "intent": "konsultacje",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "CbZ5Qn"
+          },
+          "activityProcessed": true,
+          "dialog": "konsultacje_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "O0nv7S",
+        "name": "obronione_tematy"
+      },
+      "intent": "obronione_tematy",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "iMH4gB"
+          },
+          "activityProcessed": true,
+          "dialog": "obronione_tematy_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "8VB7cs",
+        "name": "lista"
+      },
+      "intent": "lista",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "RaNGwG"
+          },
+          "activityProcessed": true,
+          "dialog": "lista_tematow_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Zbr32V",
+        "name": "propozycja_tematu"
+      },
+      "intent": "propozycja_tematu",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "yGReV4"
+          },
+          "activityProcessed": true,
+          "dialog": "nowa_praca_dyplomowa_zapytanie_dialog"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "zoQlwY",
+        "name": "STOP"
+      },
+      "intent": "STOP",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "N8buX7"
+          },
+          "activity": "${SendActivity_N8buX7()}"
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "kCeOib"
+          },
+          "activityProcessed": true
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "vKgnr8",
+        "name": "zajecia"
+      },
+      "intent": "zajecia",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "PlUCyN"
+          },
+          "activity": "${SendActivity_PlUCyN()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "oDCTmp",
+        "name": "egzaminy"
+      },
+      "intent": "egzaminy",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "zfkLDW"
+          },
+          "activity": "${SendActivity_zfkLDW()}"
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "WykladowcaBot.lg",
+  "id": "WykladowcaBot",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "praca_dyplomowa",
+        "pattern": "PRACA DYPLOMOWA"
+      },
+      {
+        "intent": "konsultacje",
+        "pattern": "KONSULTACJE"
+      },
+      {
+        "intent": "obronione_tematy",
+        "pattern": "OBRONIONE TEMATY"
+      },
+      {
+        "intent": "lista",
+        "pattern": "LISTA"
+      },
+      {
+        "intent": "propozycja_tematu",
+        "pattern": "PROPOZYCJA TEMATU"
+      },
+      {
+        "intent": "STOP",
+        "pattern": "STOP"
+      },
+      {
+        "intent": "zajecia",
+        "pattern": "ZAJĘCIA"
+      },
+      {
+        "intent": "egzaminy",
+        "pattern": "EGZAMINY"
+      }
+    ]
+  }
+}

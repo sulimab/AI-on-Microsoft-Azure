@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# SendActivity_bW93Ff()
+- Temat ${dialog.foreach.index}: ${dialog.foreach.value}
+# SendActivity_Ra5hne()
+[Activity
+    Text = Mam nadzieję, że pomogło Ci to znaleźć inspirację. Może zainteresuje Cie też LISTA dostępnych tematów, lub przyszła CI do głowy PROPOZYCJA TEMATU. Możemy się także umówić na KONSULTACJE.
+    SuggestedActions = LISTA | PROPOZYCJA TEMATU | KONSULTACJE
+]

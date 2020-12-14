@@ -1,0 +1,14 @@
+[import](common.lg)
+
+# SendActivity_JzIWNC()
+- Świetnie, najlepiej jeżeli spotkamy sie na konsultacjach.
+# TextInput_Prompt_qKxKIR()
+[Activity
+    Text = Czy jesteś już moim dyplomantem?
+    SuggestedActions = tak | nie
+]
+# TextInput_Prompt_D0YPx2()
+[Activity
+    Text = Czy masz pomysł na własny temat
+    SuggestedActions = tak | nie
+]

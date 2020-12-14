@@ -1,0 +1,17 @@
+[import](common.lg)
+
+# SendActivity_Welcome
+- ${WelcomeUser()}
+
+# TextInput_Prompt_NNquc9()
+- Powiedz mi jak masz na imię!
+
+# SendActivity_N8buX7()
+- OKEJ! Jeżeli masz jeszcze jakieś problemy, nie wahaj się o tym powiedzieć :) Dostępne opcje to: PRACA DYPLOMOWA, KONSULTACJE, EGZAMINY, ZAJĘCIA.
+# SendActivity_E0CieR()
+- lalala
+
+# SendActivity_PlUCyN()
+- Aktualnie prowadze jedne zajęcia, tj. Botologia stosowana. Dowiesz się na nich czym sa boty i co mają do roboty. Zajęcia odbywają się co piątek od 12:15 do 13:45 w sali GE-314. Jeżeli masz jeszcze jakieś problemy, nie wahaj się o tym powiedzieć :) Dostępne opcje to: PRACA DYPLOMOWA, KONSULTACJE, EGZAMINY, ZAJĘCIA. 
+# SendActivity_zfkLDW()
+- Wszystkie informacje o EGZAMINACH pojawiać się będą na platformie ISOD. Jeżeli masz jeszcze jakieś problemy, nie wahaj się o tym powiedzieć :) Dostępne opcje to: PRACA DYPLOMOWA, KONSULTACJE, EGZAMINY, ZAJĘCIA.

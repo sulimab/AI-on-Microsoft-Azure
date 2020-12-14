@@ -1,0 +1,68 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "J7Wptc",
+    "name": "obronione_tematy_dialog",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "ujIR5R"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "wFDNyR"
+          },
+          "value": "Przykładowy Temat ",
+          "changeType": "push",
+          "itemsProperty": "dialog.thesisFinished"
+        },
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "01iNKx"
+          },
+          "changeType": "push",
+          "itemsProperty": "dialog.thesisFinished",
+          "value": "Temat tez przykładowy ale jednak inny"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "5HHp0e"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "bW93Ff"
+              },
+              "activity": "${SendActivity_bW93Ff()}"
+            }
+          ],
+          "itemsProperty": "dialog.thesisFinished"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Ra5hne"
+          },
+          "activity": "${SendActivity_Ra5hne()}"
+        }
+      ]
+    }
+  ],
+  "generator": "obronione_tematy_dialog.lg",
+  "recognizer": "obronione_tematy_dialog.lu.qna",
+  "id": "obronione_tematy_dialog"
+}

@@ -1,0 +1,7 @@
+[import](common.lg)
+
+# SendActivity_WSePqP()
+[Activity
+    Text = Czołem ${user.name} czego dotyczy Twój problem:
+    SuggestedActions = PRACA DYPLOMOWA | KONSULTACJE | EGZAMINY | ZAJĘCIA
+]

@@ -1,0 +1,84 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "iJqPzX",
+    "name": "lista_tematow_dialog",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "jzpESM"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "8jUEZe"
+          },
+          "activity": "${SendActivity_8jUEZe()}"
+        },
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "NCEyDP"
+          },
+          "changeType": "push",
+          "itemsProperty": "dialog.thesisProposals",
+          "value": "Propozycja tematu taka sobie"
+        },
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "Ny1IJv"
+          },
+          "itemsProperty": "dialog.thesisProposals",
+          "changeType": "push",
+          "value": "Propozycja tematu inna, ale też fajna"
+        },
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "baY5pQ"
+          },
+          "itemsProperty": "dialog.thesisProposals",
+          "changeType": "push",
+          "value": "Taka sobie propozycja tematu"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "2bEung"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "TYYiPT"
+              },
+              "activity": "${SendActivity_TYYiPT()}"
+            }
+          ],
+          "itemsProperty": "dialog.thesisProposals"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "I2k8ko"
+          },
+          "activity": "${SendActivity_I2k8ko()}"
+        }
+      ]
+    }
+  ],
+  "generator": "lista_tematow_dialog.lg",
+  "recognizer": "lista_tematow_dialog.lu.qna",
+  "id": "lista_tematow_dialog"
+}

@@ -1,0 +1,11 @@
+[import](common.lg)
+
+# TextInput_Prompt_26N5IC()
+- Ciesze się, że masz pomysł na swoją pracę. Opisz mi w kilku zdaniach czego dotyczy Twoja praca? 
+# TextInput_Prompt_haGlvl()
+- Jak zatytułował byś swoją pracę?
+
+# SendActivity_MjJT36()
+- Moduł wysyłania maili jeszcze nie działa, ale przygotowałem dla Ciebie treść wiadomości poniżej. W tytule umieść "Praca dyplomowa - ${dialog.thesis_title}". \n\n\"Szanowny Panie Doktorze, \n\n przesyłam mój pomysł na prace pod tytułem \" ${dialog.thesis_title} \". Opis pracy: \" ${dialog.thesis_desc} \" Proszę o Pana uczoną opinię. \n\n Z wyrazami szacunku, \n\n ${user.name} \n\n ${user.album_id}\"
+# NumberInput_Prompt_KuKEB8()
+- Podaj numer indeksu:

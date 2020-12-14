@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.LuisRecognizer",
+  "id": "LUIS_obronione_tematy_dialog",
+  "applicationId": "=settings.luis.obronione_tematy_dialog_pl_lu.appId",
+  "version": "=settings.luis.obronione_tematy_dialog_pl_lu.version",
+  "endpoint": "=settings.luis.endpoint",
+  "endpointKey": "=settings.luis.endpointKey"
+}

@@ -1,0 +1,127 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "ykD0pW",
+    "name": "praca_dyplomowa_dialog",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "ltT3Ti"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "qKxKIR"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_qKxKIR()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.currentlyWritingThesis"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "Y6JRHm"
+          },
+          "cases": [
+            {
+              "value": "tak",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "JzIWNC"
+                  },
+                  "activity": "${SendActivity_JzIWNC()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "7c9yw0"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "konsultacje_dialog"
+                }
+              ]
+            },
+            {
+              "value": "nie",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "D0YPx2"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": true,
+                  "prompt": "${TextInput_Prompt_D0YPx2()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "user.hasOwnThesisTitle"
+                },
+                {
+                  "$kind": "Microsoft.SwitchCondition",
+                  "$designer": {
+                    "id": "IYvohl"
+                  },
+                  "condition": "=user.hasOwnThesisTitle",
+                  "cases": [
+                    {
+                      "value": "tak",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "cj4YDH"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "nowa_praca_dyplomowa_zapytanie_dialog"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "nie",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "xYYFL9"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "nowa_praca_dyplomowa_brak_tematu_dialog"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "condition": "=user.currentlyWritingThesis"
+        }
+      ]
+    }
+  ],
+  "generator": "praca_dyplomowa_dialog.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "praca_dyplomowa_dialog"
+}

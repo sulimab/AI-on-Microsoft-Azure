@@ -1,0 +1,11 @@
+[import](common.lg)
+
+# SendActivity_8jUEZe()
+- taka tam lista w nowym dialogu
+# SendActivity_TYYiPT()
+- Propozycja ${dialog.foreach.index}: ${dialog.foreach.value}
+# SendActivity_I2k8ko()
+[Activity
+    Text = Mam nadzieję, że ta lista pomogła Ci to znaleźć inspirację. Może zainteresują Cię też OBRONIONE TEMATY lub przyszła CI do głowy PROPOZYCJA TEMATU. Możemy się także umówić na KONSULTACJE.
+    SuggestedActions = OBRONIONE TEMATY | PROPOZYCJA TEMATU | KONSULTACJE
+]
