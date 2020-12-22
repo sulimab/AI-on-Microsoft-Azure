@@ -1,7 +1,5 @@
 [import](common.lg)
 
-# SendActivity_8jUEZe()
-- taka tam lista w nowym dialogu
 # SendActivity_TYYiPT()
 - Propozycja ${dialog.foreach.index}: ${dialog.foreach.value}
 # SendActivity_I2k8ko()

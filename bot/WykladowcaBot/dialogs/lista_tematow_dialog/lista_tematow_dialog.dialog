@@ -17,13 +17,6 @@
       },
       "actions": [
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "8jUEZe"
-          },
-          "activity": "${SendActivity_8jUEZe()}"
-        },
-        {
           "$kind": "Microsoft.EditArray",
           "$designer": {
             "id": "NCEyDP"

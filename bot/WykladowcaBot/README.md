@@ -1,73 +1,55 @@
-This folder contains a Bot Project created with Bot Framework Composer.
-
-The full documentation for Composer lives here:
-https://github.com/microsoft/botframework-composer
-
-To test this bot locally, open this folder in Composer, then click "Start Bot"
-
-## Provision Azure Resources to Host Bot
-
-This project includes a script that can be used to provision the resources necessary to run your bot in the Azure cloud. Running this script will create all of the necessary resources and return a publishing profile in the form of a JSON object.  This JSON object can be imported into Composer's "Publish" tab and used to deploy the bot.
-
-* From this project folder, navigate to the scripts/ folder
-* Run `npm install`
-* Run `node provisionComposer.js --subscriptionId=<YOUR AZURE SUBSCRIPTION ID> --name=<NAME OF YOUR RESOURCE GROUP> --appPassword=<APP PASSWORD> --environment=<NAME FOR ENVIRONMENT DEFAULT to dev>`
-* You will be asked to login to the Azure portal in your browser.
-* You will see progress indicators as the provision process runs. Note that it will take roughly 10 minutes to fully provision the resources.
-
-It will look like this:
-```
-{
-  "accessToken": "<SOME VALUE>",
-  "name": "<NAME OF YOUR RESOURCE GROUP>",
-  "environment": "<ENVIRONMENT>",
-  "settings": {
-    "applicationInsights": {
-      "InstrumentationKey": "<SOME VALUE>"
-    },
-    "cosmosDb": {
-      "cosmosDBEndpoint": "<SOME VALUE>",
-      "authKey": "<SOME VALUE>",
-      "databaseId": "botstate-db",
-      "collectionId": "botstate-collection",
-      "containerId": "botstate-container"
-    },
-    "blobStorage": {
-      "connectionString": "<SOME VALUE>",
-      "container": "transcripts"
-    },
-    "luis": {
-      "endpointKey": "<SOME VALUE>",
-      "authoringKey": "<SOME VALUE>",
-      "region": "westus"
-    },
-    "MicrosoftAppId": "<SOME VALUE>",
-    "MicrosoftAppPassword": "<SOME VALUE>"
-  }
-}```
-
-When completed, you will see a message with a JSON "publishing profile" and instructions for using it in Composer.
+To repozytorium zawiera bota stworzonego prze Bot Framework Composer. 
 
 
-## Publish bot to Azure
+## Projekt - Bot dla Wykładowcy
 
-To publish your bot to a Azure resources provisioned using the process above:
+Bot pozwala w pewnym stopniu zautomatyzować kontakt z wykładowcą w zakresie organizacji konsultacji oraz współpracy przy pracy dyplomowej. Pisany był z myślą o wydziale elektrycznym, mimo iż na tym wydziale większość zawartych w bocie funkcjonalności można zrealizować korzystając z systemu ISOD. Projekt ten realizuje tylko częśc konwersacyjną, nie zawiera w sobie integracji z systemem ISOD.
 
-* Open your bot in Composer
-* Navigate to the "Publish" tab
-* Select "Add new profile" from the toolbar
-* In the resulting dialog box, choose "azurePublish" from the "Publish Destination Type" dropdown
-* Paste in the profile you received from the provisioning script
+### Przypadki użycia
 
-When you are ready to publish your bot to Azure, select the newly created profile from the sidebar and click "Publish to selected profile" in the toolbar.
+Użytkownik korzystając z bota może zrealizować poniższe przypadki użycia
+1. Uzyskać informację o aktualnie realizowanych przedmiotach przez prowadzącego, który udostepnia takowego Bota - aktualnie sugestia, aby sprawdzić te informacje w systemie ISOD.
+1. Uzyskać informację o egzaminach realizowanych z przedmiotów prowadzonych przez danego prowadzącego - aktualnie sugestia, aby sprawdzić te informacje w systemie ISOD.
+1. Uzyskać informację o tym gdzie umówić się na konsultacje - informacja o tym, że funkcjonalnośc tę ralizuje system ISOD.
+1. Uzyskać informacje o pracy dyplomowej 
+	* Pierwszy przypadek skierowany do użykownika, który jest aktualnym dyplomantem danego prowadzącego, w takim przypadku kierowany jest na konsultacje
+	* Kolejny przypadek to sytuacja gdy użytkownik, nie jest aktualnie dyplomantem, ale chciałyby nim zostać i ma już pomysł na własny temat pracy, w takim przypadku bot prosi o krótki opis, tytuł oraz dane studenta i przygotowuje dla niego treśc maila do wysłania do prowadzącego.
+	* Ostatni przypadek to sytuacja gdy użytkownik nie jest aktualnym dyplomantem, chciałby nim zostać, ale nie posiada włąsnego tematu. W takim przypadku może zobaczyć dotychczas obronione prace oraz proponowane w celu inspiracji i wybrania własnego tematu. Może także przejść do konsultacji. 
 
-## Refresh your Azure Token
 
-When publishing, you may encounter an error about your access token being expired. This happens when the access token used to provision your bot expires.
 
-To get a new token:
+### Architektura
 
-* Open a terminal window
-* Run `az account get-access-token`
-* This will result in a JSON object printed to the console, containing a new `accessToken` field.
-* Copy the value of the accessToken from the terminal and into the publish `accessToken` field in the profile in Composer.
+Bot składa się z głownego dialogu, nazwanego WykladowcaBot oraz 7 innych dialogów, które zostaną omówione w dalszej części tego dokumentu.
+
+# WykladowcaBot
+WykladowcaBot to główny dialog bota. Wewnątrz odbywa się przywitanie, oraz pobranie od użytkonika informacji o imieniu, a następnie przekazanie kontroli do dialogu start_dialog, w którym użytkownikowi przedstawiane są możliwości. Oprócz głownego Triggera Greeting znajduje się w nim jeszcze 8 innych: 
+* praca_dyplomowa - trigger kieruje do dialogu praca_dyplomowa_dialog
+* konsultacje - trigger kieruje do dialogu konsultacje_dialog
+* obronione_tematy - trigger kieruje do dialogu obronione_tematy_dialog
+* lista - trigger kieruje do dialogu lista_tematow_dialog
+* propozycja_tematu - trigger kieruje do dialogu nowa_praca_dyplomowa_zapytanie_dialog
+* STOP - trigger służy do wyłączenia wszystkich
+* zajecia - trigger zwraca informacje o zajęciach które prowadzi wykładowca
+* egzaminy - trigger informuje, gdzie można znaleźć informacje o zaliczeniach i egzaminach
+
+# konsultacje_dialog
+Dialog w którym zawarta jest informacja o tym, że umawianie na konsultacje realizowane jest przez system ISOD. 
+
+# lista_tematow_dialog
+Dialog w którym uzupełniana jest (aktualnie sztucznie) lista dostępnych tematów prac dyplomowych, która następnie jest zwracana użytkownikowi korzystając z pętli for-each. Po wyświetleniu listy pojawia się możliwość zobaczenia już obronionych tematów (obronione_tematy_dialog), a także przejścia do dialogu konsultacji (konsultacje_dialog) oraz ustalania tematu pracy (nowa_praca_dyplomowa_zapytanie_dialog).
+
+# nowa_praca_dyplomowa_brak_tematu_dialog
+Dialog, który wyświetla się osobom, które nie są aktualnymi dyplomantami oraz nie mają swojeog własnego pomysłu na temat. Pozwala przejść do listy dostepnych tematów (lista_tematow_dialog) lub obronionych prac (obronione_tematy_dialog), aby zainspirować studenta do znalezienia własnego tematu.
+
+# nowa_praca_dyplomowa_zapytanie_dialog
+Dialog wyświetla się studentowi, który ma pomysł na swój własny temat. Użytkownik jest proszony o tytuł i krótki opis pracy, a także numer indeksu. Na tej podstawie przygotowywana jest treść maila, którą student musi samodzielnie wysłać prowadzącemu.
+
+# obronione_tematy_dialog
+Dialog wyświetlający listę obronionych tematów prac, skierowany do osób nie będących aktualnymi dyplomantami. Aktualnie lista tematów uzupełniana jest sztucznie wewnątrz dialogu. Po wyświetleniu listy pojawia się możliwość zobaczenia proponowanych tematów (lista_tematow_dialog), a także przejścia do dialogu konsultacji (konsultacje_dialog) oraz ustalania tematu pracy (nowa_praca_dyplomowa_zapytanie_dialog).
+
+# praca_dyplomowa_dialog
+Dialog uruchamiany przez zapytanie "PRACA DYPLOMOWA", który korzystając z funkcji switch sprawdza, do którego dialogu powinien przekierować użytkownika, zainteresowanego tematem pracy dyplomowej. 
+
+# start_dialog
+Dialog startowy prezentujący 4 podstawowe tematy, czyli "PRACA DYPLOMOWA", "KONSULTACJE", "EGZAMINY" oraz "ZAJĘCIA"
