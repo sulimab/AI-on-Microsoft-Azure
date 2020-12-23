@@ -22,7 +22,7 @@ Użytkownik korzystając z bota może zrealizować poniższe przypadki użycia
 
 Bot składa się z głownego dialogu, nazwanego WykladowcaBot oraz 7 innych dialogów, które zostaną omówione w dalszej części tego dokumentu.
 
-# WykladowcaBot
+##### WykladowcaBot
 WykladowcaBot to główny dialog bota. Wewnątrz odbywa się przywitanie, oraz pobranie od użytkonika informacji o imieniu, a następnie przekazanie kontroli do dialogu start_dialog, w którym użytkownikowi przedstawiane są możliwości. Oprócz głownego Triggera Greeting znajduje się w nim jeszcze 8 innych: 
 * praca_dyplomowa - trigger kieruje do dialogu praca_dyplomowa_dialog
 * konsultacje - trigger kieruje do dialogu konsultacje_dialog
@@ -33,23 +33,26 @@ WykladowcaBot to główny dialog bota. Wewnątrz odbywa się przywitanie, oraz p
 * zajecia - trigger zwraca informacje o zajęciach które prowadzi wykładowca
 * egzaminy - trigger informuje, gdzie można znaleźć informacje o zaliczeniach i egzaminach
 
-# konsultacje_dialog
+##### konsultacje_dialog
 Dialog w którym zawarta jest informacja o tym, że umawianie na konsultacje realizowane jest przez system ISOD. 
 
-# lista_tematow_dialog
+##### lista_tematow_dialog
 Dialog w którym uzupełniana jest (aktualnie sztucznie) lista dostępnych tematów prac dyplomowych, która następnie jest zwracana użytkownikowi korzystając z pętli for-each. Po wyświetleniu listy pojawia się możliwość zobaczenia już obronionych tematów (obronione_tematy_dialog), a także przejścia do dialogu konsultacji (konsultacje_dialog) oraz ustalania tematu pracy (nowa_praca_dyplomowa_zapytanie_dialog).
 
-# nowa_praca_dyplomowa_brak_tematu_dialog
+##### nowa_praca_dyplomowa_brak_tematu_dialog
 Dialog, który wyświetla się osobom, które nie są aktualnymi dyplomantami oraz nie mają swojeog własnego pomysłu na temat. Pozwala przejść do listy dostepnych tematów (lista_tematow_dialog) lub obronionych prac (obronione_tematy_dialog), aby zainspirować studenta do znalezienia własnego tematu.
 
-# nowa_praca_dyplomowa_zapytanie_dialog
+##### nowa_praca_dyplomowa_zapytanie_dialog
 Dialog wyświetla się studentowi, który ma pomysł na swój własny temat. Użytkownik jest proszony o tytuł i krótki opis pracy, a także numer indeksu. Na tej podstawie przygotowywana jest treść maila, którą student musi samodzielnie wysłać prowadzącemu.
 
-# obronione_tematy_dialog
+##### obronione_tematy_dialog
 Dialog wyświetlający listę obronionych tematów prac, skierowany do osób nie będących aktualnymi dyplomantami. Aktualnie lista tematów uzupełniana jest sztucznie wewnątrz dialogu. Po wyświetleniu listy pojawia się możliwość zobaczenia proponowanych tematów (lista_tematow_dialog), a także przejścia do dialogu konsultacji (konsultacje_dialog) oraz ustalania tematu pracy (nowa_praca_dyplomowa_zapytanie_dialog).
 
-# praca_dyplomowa_dialog
+##### praca_dyplomowa_dialog
 Dialog uruchamiany przez zapytanie "PRACA DYPLOMOWA", który korzystając z funkcji switch sprawdza, do którego dialogu powinien przekierować użytkownika, zainteresowanego tematem pracy dyplomowej. 
 
-# start_dialog
+##### start_dialog
 Dialog startowy prezentujący 4 podstawowe tematy, czyli "PRACA DYPLOMOWA", "KONSULTACJE", "EGZAMINY" oraz "ZAJĘCIA"
+
+### Dalszy rozwój
+Bot zyskałby przy dalszym rozwoju. Najistotniejszym elementem, który możnaby było dodać jest instegracja z ISOD. W celu realizacji tego przydatnym byłoby posiadanie testowego środowiska ISOD, które pozwalałoby na swobodne testy. Integracja taka pozwoliłaby na pobieranie list teamtów, obronionych prac itd zgodnych z rzeczywistością i aktuaizowanych w jednym miejscu zamiast w samym bocie.  
